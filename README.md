@@ -3,12 +3,12 @@ Date : 2017 - 01 -29
 
 This project consists of writing a Lexical Analyzer for a subset of the Ada programming language. The Lexical Analyzer is to be a module written in the language of Javascript(NodeJs) that exports the following:
 
-  `procedure GetNextToken \n
-  global variables Token \n
-      Lexeme \n
-      Value {for integer tokens} \n
-      ValueR {for real tokens} \n
-      Literal {for strings} \n`
+  `procedure GetNextToken_
+  global variables Token_
+      Lexeme_
+      Value {for integer tokens}_
+      ValueR {for real tokens}_
+      Literal {for strings}_ `
 
   The following are the reserved workd in the language(may be upper or lower case):
 
