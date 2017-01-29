@@ -3,12 +3,12 @@ Date : 2017 - 01 -29
 
 This project consists of writing a Lexical Analyzer for a subset of the Ada programming language. The Lexical Analyzer is to be a module written in the language of Javascript(NodeJs) that exports the following:
 
-  `procedure GetNextToken_
-  global variables Token_
-      Lexeme_
-      Value {for integer tokens}_
-      ValueR {for real tokens}_
-      Literal {for strings}_ `
+  `procedure GetNextToken <br />
+  global variables Token <br />
+      Lexeme <br />
+      Value {for integer tokens} <br />
+      ValueR {for real tokens} <br />
+      Literal {for strings}<br /> `
 
   The following are the reserved workd in the language(may be upper or lower case):
 
@@ -16,12 +16,13 @@ This project consists of writing a Lexical Analyzer for a subset of the Ada prog
 
   The Notation for specifying tokens is as follows:
 
-  `Comments begin with the symbol -- and continue to the end of the line. Comments may appear after any token.
-  Blanks between tokens are optional, with the exception of reserved words. Reserved words must be separated by blanks, newlines, the beginning of the program or the final semicolon.`
+  `Comments begin with the symbol -- and continue to the end of the line. <br /> Comments may appear after any token.
+  Blanks between tokens are optional, with the exception of reserved words. <br />
+  Reserved words must be separated by blanks, newlines, the beginning of the program or the final semicolon.<br />`
 
   Token id for indentifiers matches a letter followed by letters, underscore and/or digits having a maximum length of 17 characters. Ada identifiers are not case sensitive.
 
-  `letter -> [a-z, A-Z]
-   digit -> [0-9]
-   underscore -> _
-   id -> letter(letter|digit|underscore)*`
+  `letter -> [a-z, A-Z] <br />
+   digit -> [0-9] <br />
+   underscore -> _  <br />
+   id -> letter(letter|digit|underscore)* <br />`
