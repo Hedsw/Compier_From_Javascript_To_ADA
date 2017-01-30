@@ -1,0 +1,22 @@
+procedure Pro_3 is
+i : Integer;
+Array_test : char;
+Tmp2 : Float;
+
+begin
+  New_Line;
+  switch_to_real := 0;
+  Tmp := 0;
+  next:= 0;
+    For_Loop3 :
+      for I in Integer range 1..10 loop
+        next :=2;
+          While_Loop:
+          while Array_For_Test(I) >= (next*next) loop
+            if Array_For_Test(I) mod (next*next) =0 and then Array_For_Test(I)/(next*next) =1 then
+              Put(Array_For_Test(I));
+            end if;
+              next := next+1;
+          end loop While_Loop;
+    end loop For_Loop3;
+end Pro_3;

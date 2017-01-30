@@ -1,9 +1,9 @@
 # Compier_From_Javascript_To_ADA
-Date : 2017 - 01 -29
+##Date : 2017 - 01 -29
 
 This project consists of writing a Lexical Analyzer for a subset of the Ada programming language. The Lexical Analyzer is to be a module written in the language of Javascript(NodeJs) that exports the following:
 
-  `procedure GetNextToken
+  `procedure GetNextToken,
   global variables Token
       Lexeme
       Value {for integer tokens}
@@ -25,4 +25,4 @@ This project consists of writing a Lexical Analyzer for a subset of the Ada prog
   `letter -> [a-z, A-Z]
    digit -> [0-9]
    underscore -> _  
-   id -> letter(letter|digit|underscore)* <br/>`
+   id -> letter(letter|digit|underscore)*`
