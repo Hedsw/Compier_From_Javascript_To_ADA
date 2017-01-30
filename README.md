@@ -3,7 +3,7 @@
 
 This project consists of writing a Lexical Analyzer for a subset of the Ada programming language. The Lexical Analyzer is to be a module written in the language of Javascript(NodeJs) that exports the following:
 
-  `procedure GetNextToken   
+  `procedure GetNextToken
   global variables Token
       Lexeme
       Value {for integer tokens}
