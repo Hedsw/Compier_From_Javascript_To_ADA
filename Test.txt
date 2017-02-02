@@ -1,13 +1,12 @@
 procedure Pro_3 is
 i : Integer;
-Array_test : char;
+Array_test : char; --HiHi
 Tmp2 : Float;
-
 begin
   New_Line;
   switch_to_real := 0;
   Tmp := 0;
-  next:= 0;
+  next := 0;
     For_Loop3 :
       for I in Integer range 1..10 loop
         next :=2;
