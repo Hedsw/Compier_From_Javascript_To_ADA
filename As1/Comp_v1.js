@@ -98,6 +98,22 @@ fs.readFile(process.argv[2],function(err,data) {
       for(var i = 0; i < ass_op.length; i ++)
       console.log(ass_op[i] +  ' <-- assign op \n ');
 
+
+      function isInt(n){
+            return Number(n) === n && n % 1 === 0;
+        }
+
+      function isFloat(n){
+            return Number(n) === n && n % 1 !== 0;
+        }
+
+      //Assign Operator
+      //Mul Operator
+      lines.forEach(function(line) {
+        console.log(isInt(line));
+        console.log(isFloat(line));
+      })
+
       var pattern1='"';
       var check_que;
        for(var i = 0; i < lines.length; i++) {
