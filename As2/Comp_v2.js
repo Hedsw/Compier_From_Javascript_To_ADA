@@ -52,7 +52,33 @@ var procedure_count = 0;
       console.log("idt and end is not matched");
   }
   if(procedure_count == 2) {
-    
+    console.log(lines.length);
+     if(lines[0].match(procedure_match) != null) {
+        tmp_line2 = lines[0].split(' ');
+        idt_check2 = tmp_line2[1];
+      }
+    for(var i = 0; i< lines.length; i++) {
+      if(lines[i].match(end_match) != null) {
+        tmp_line = lines[i].split(' ');
+        tmp_line2 = tmp_line[1].split(';');
+        end_check = tmp_line2[0];
+      }
+    }
+    if(end_check.match(idt_check2) == null) 
+      console.log("idt and end is not matched");
+    for(var i = 1; i< lines.length-2; i++) {
+      if(lines[i].match(procedure_match) != null) {
+        tmp_line2 = lines[i].split(' ');
+        idt_check2 = tmp_line2[1];
+      }
+      if(lines[i].match(end_match) != null) {
+        tmp_line = lines[i].split(' ');
+        tmp_line2 = tmp_line[1].split(';');
+        end_check2 = tmp_line2[0];
+      }
+    }
+    if(end_check2.match(idt_check2) == null) 
+      console.log("idt and end is not matched");
   }
 
   //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
