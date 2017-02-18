@@ -16,7 +16,8 @@ var result = 0;
 }
 
     var procedure_match = (/PROCEDURE/gi);
-    var IS_match = (/is/gi);
+    var end_match = (/END/gi);
+    var IS_match = (/IS/gi);
 function RecursiveDescentParser () {
 
 var fs = require('fs');
@@ -26,13 +27,34 @@ fs.readFile(process.argv[2],function(err,data) {
 var text = data.toString();
 var lines = text.split('\n');
 
-var procedure_tmp = lines.split(' ');
+var procedure_tmp = text.split(' ');
 var procedure_count = 0;
 
-  for(var i = 0; i < lines.length; i++)
-      if(procedure_tmp =="PROCEDURE")
-         procedure_count++;
-  console.log(procedure_count);
+//이걸로 프로시저의 갯수가 몇개 있는지 체크함.. Begin End 만들려고
+  for(var i = 0; i < lines.length; i++) 
+    if(lines[i].match(procedure_match) != null)
+           procedure_count++;
+      
+//begin end check
+  if(procedure_count == 1) {
+    for(var i = 0; i< lines.length; i++) {
+      if(lines[i].match(procedure_match) != null) {
+        tmp_line = lines[i].split(' ');
+        idt_check = tmp_line[1];
+      }
+    if(lines[i].match(end_match) != null) {
+        tmp_line = lines[i].split(' ');
+        tmp_line2 = tmp_line[1].split(';');
+        end_check = tmp_line2[0];
+      }
+    }
+    if(end_check.match(idt_check) == null) 
+      console.log("idt and end is not matched");
+  }
+  if(procedure_count == 2) {
+    
+  }
+
   //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
    lines.forEach(function(line) {   
           match_Procedure(line); 
@@ -45,16 +67,15 @@ var procedure_count = 0;
 // Here is check about idt Args is
 function match_Procedure(line) {
       var is_check = 0;
-      var idt_check = 0;
       var paran_check = 0;
       var lines2 = line.split(' ');
       var mode_check = 0; // ) 의 위치 체크
       var mode_check2 = 0; // ; 위치 체크
       var mode_check3 = 0; // : 갯수 체크
       var mode_check4 = 0; // ; 갯수 체크
+            
       //Is check
      if(lines2[0].match(procedure_match) != null) {
-        // console.log(lines2);
       lines2.forEach(function(line_ISCHECK) {
         if(line_ISCHECK.match(IS_match) != null) {
           is_check++;
@@ -103,4 +124,5 @@ function match_Procedure(line) {
 
 
 RecursiveDescentParser ();
+
 
