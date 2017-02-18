@@ -25,6 +25,14 @@ fs.readFile(process.argv[2],function(err,data) {
 
 var text = data.toString();
 var lines = text.split('\n');
+
+var procedure_tmp = lines.split(' ');
+var procedure_count = 0;
+
+  for(var i = 0; i < lines.length; i++)
+      if(procedure_tmp =="PROCEDURE")
+         procedure_count++;
+  console.log(procedure_count);
   //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
    lines.forEach(function(line) {   
           match_Procedure(line); 
@@ -37,6 +45,7 @@ var lines = text.split('\n');
 // Here is check about idt Args is
 function match_Procedure(line) {
       var is_check = 0;
+      var idt_check = 0;
       var paran_check = 0;
       var lines2 = line.split(' ');
       var mode_check = 0; // ) 의 위치 체크
@@ -51,12 +60,14 @@ function match_Procedure(line) {
           is_check++;
         }
       })
+
+      //Is Checking
       if(is_check < 1) {
         console.log("IS is missing\n");
         console.log(lines2);
         is_check = 0;
       }
-     
+
       //Paran Check 
       for(var i = 0; i < line.length; i++) {
        //console.log(line[i]);
@@ -70,25 +81,26 @@ function match_Procedure(line) {
           mode_check4++;
           mode_check2 = i; //이것을 가지고.. :가 몇개 있는지 확인.. 그걸로 move check 하기
       }
-    }
-      if(line[i] == ":")
+       if(line[i] == ":")
           mode_check3++;
-
+    }
       if(paran_check == 1) {
         console.log(line + "Paranthesis is missing\n");
         paran_check = null;
       }
       tmp = mode_check3 - mode_check4;
-      if(tmp > 0 && tmp !=1)
-      {
-        console.log(line + ": or ; missing");
-      }
 
-      for(var i = mode_check; i < mode_check2; i++) {
-        console.log(line[i]);
-    }
+      if(mode_check4 >= mode_check3 && paran_check > null) 
+        console.log(line + ": or ; missing");
+      
+//    이걸 가지고 이제.. 그 Mode(in, out, inout) 체크를 해야함
+    //   for(var i = mode_check; i < mode_check2; i++) {
+    //     console.log(line[i]);
+    // }
+
   }
 }
+
 
 RecursiveDescentParser ();
 
