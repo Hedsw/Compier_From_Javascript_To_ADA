@@ -2,7 +2,7 @@ PROCEDURE seven IS
 count: CONSTRAINT:=5;
 a,b:INTEGER;
 PROCEDURE eight(X:INTEGER; y: INTEGER) IS
-BEGIN 
+BEGIN
 END eight;
 BEGIN
 END seven;
