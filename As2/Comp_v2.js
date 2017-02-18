@@ -77,8 +77,6 @@ function match_Procedure(line) {
       for(var i = mode_check; i < mode_check2; i++) {
         console.log(line[i]);
     }
-
-
   }
 }
 
