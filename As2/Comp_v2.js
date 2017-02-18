@@ -39,6 +39,8 @@ function match_Procedure(line) {
       var is_check = 0;
       var paran_check = 0;
       var lines2 = line.split(' ');
+      var mode_check = 0;
+      var mode_check2 = 0;
       //Is check
      if(lines2[0].match(procedure_match) != null) {
         // console.log(lines2);
@@ -55,17 +57,27 @@ function match_Procedure(line) {
      
       //Paran Check 
       for(var i = 0; i < line.length; i++) {
-       // console.log(line[i]);
-      if(line[i] == ")") 
+       //console.log(line[i]);
+      if(line[i] == "(") { 
           paran_check++;
-      if(line[i] =="(")
-          paran_check++;
+          mode_check = i;
       }
+      if(line[i] == ")")
+          paran_check++;
+      if(line[i] == ";")
+          mode_check2 = i; //이것을 가지고.. :가 몇개 있는지 확인.. 그걸로 move check 하기
+      }
+
       if(paran_check == 1) {
-         console.log(line + "Paranthesis is missing\n");
-         paran_check = null;
-     }
+        console.log(line + "Paranthesis is missing\n");
+        paran_check = null;
+      }
       
+
+      for(var i = mode_check; i < mode_check2; i++) {
+        console.log(line[i]);
+    }
+
 
   }
 }
