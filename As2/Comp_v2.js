@@ -18,7 +18,9 @@ var result = 0;
     var procedure_match = (/PROCEDURE/gi);
     var end_match = (/END/gi);
     var IS_match = (/IS/gi);
-function RecursiveDescentParser () {
+    var typeMark = (/integert|realt|chart|constant/gi);
+   // var declar_pick = (/PROCEDURE|END|BEGIN|/gi);
+function recursiveDescentParser () {
 
 var fs = require('fs');
 fs.readFile(process.argv[2],function(err,data) {
@@ -87,15 +89,30 @@ var procedure_count = 0;
 
   //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
    lines.forEach(function(line) {   
-          match_Procedure(line); 
+          match_procedure(line); 
     })
 
+//search로 자리 검사하기
+
+    //declarativePart
+    for(var i = 0; i<lines.length; i++) {
+       var lines2 = lines[i].split(' ');
+            if(lines2[0].match(procedure_match) != null) {
+              var line3 = lines[i+1].split(' ');
+              if(/PROCEDURE|END|BEGIN/gi.test(line3[0])!=true) {
+              //여기다가 이제 모든 걸 짜게 될 것이다.. 
+              //그 PROCEDRUE, END, BEGIN을 제외한 나머지 것들이 걸리게 되면 여기에서 코딩을 시작한다
+              
+
+        }
+      }
+    }
   })
 }
 
 // Procedure Match
 // Here is check about idt Args is
-function match_Procedure(line) {
+function match_procedure(line) {
       var is_check = 0;
       var paran_check = 0;
       var lines2 = line.split(' ');
@@ -153,6 +170,6 @@ function match_Procedure(line) {
 }
 
 
-RecursiveDescentParser ();
+recursiveDescentParser ();
 
 
