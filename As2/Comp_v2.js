@@ -102,8 +102,8 @@ var procedure_count = 0;
               if(/PROCEDURE|END|BEGIN/gi.test(line3[0])!=true) {
               //여기다가 이제 모든 걸 짜게 될 것이다.. 
               //그 PROCEDRUE, END, BEGIN을 제외한 나머지 것들이 걸리게 되면 여기에서 코딩을 시작한다
+              console.log(line3.length);
               
-
         }
       }
     }
