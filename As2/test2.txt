@@ -1,6 +1,6 @@
 PROCEDURE seven IS
-count: CONSTRAINT:=5;
-a,b:INTEGER;
+count: CONSTANT := 5;
+a,b : INTEGER;
 PROCEDURE eight (X:INTEGER; y: INTEGER) IS
 BEGIN
 END eight;

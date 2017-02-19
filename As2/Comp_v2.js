@@ -18,7 +18,7 @@ var result = 0;
     var procedure_match = (/PROCEDURE/gi);
     var end_match = (/END/gi);
     var IS_match = (/IS/gi);
-    var typeMark = (/integert|realt|chart|constant/gi);
+    var typeMark = (/integer|real|char|constant/gi);
    // var declar_pick = (/PROCEDURE|END|BEGIN|/gi);
 function recursiveDescentParser () {
 
@@ -28,7 +28,6 @@ fs.readFile(process.argv[2],function(err,data) {
 
 var text = data.toString();
 var lines = text.split('\n');
-
 var procedure_tmp = text.split(' ');
 var procedure_count = 0;
 
@@ -36,7 +35,6 @@ var procedure_count = 0;
   for(var i = 0; i < lines.length; i++) 
     if(lines[i].match(procedure_match) != null)
            procedure_count++;
-      
 //begin end check
   if(procedure_count == 1) {
     for(var i = 0; i< lines.length; i++) {
@@ -86,27 +84,44 @@ var procedure_count = 0;
     if(idt_check2.match(end_check2) == null) 
       console.log("idt and end is not matched2");
   }
-
   //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
    lines.forEach(function(line) {   
           match_procedure(line); 
     })
-
 //search로 자리 검사하기
-
     //declarativePart
+      var check_begin;
     for(var i = 0; i<lines.length; i++) {
        var lines2 = lines[i].split(' ');
-            if(lines2[0].match(procedure_match) != null) {
-              var line3 = lines[i+1].split(' ');
-              if(/PROCEDURE|END|BEGIN/gi.test(line3[0])!=true) {
-              //여기다가 이제 모든 걸 짜게 될 것이다.. 
-              //그 PROCEDRUE, END, BEGIN을 제외한 나머지 것들이 걸리게 되면 여기에서 코딩을 시작한다
-              console.log(line3.length);
-              
-        }
-      }
-    }
+            if(lines2[0].match(/BEGIN/gi) != null) {
+               check_begin = i+1;
+               break;
+      } // if macth 
+    } //for loop 
+          for( var j = 0; j < check_begin; j++) {
+              var line3_tmp = lines[j].split(' ');
+               if(/PROCEDURE|END|BEGIN/gi.test(line3_tmp[0])!=true) 
+               {
+                 for(var k = 0; k < line3_tmp.length; k++) {
+                  var n = line3_tmp[k].search(/:/g);
+                    if( n >= 0) {
+                      if(/integer|real|char/gi.test(line3_tmp[k-1])==true) {
+                      console.log("Declarative Error " + line3_tmp[k-1]);
+                  }
+                }
+                  var n2 = line3_tmp[k].search(/:=/g);
+                    if( n2 >= 0) {
+                       if(/constant/gi.test(line3_tmp[k-1])!=true) {
+                      console.log("Declarative Error " + line3_tmp[k-1]);
+                  }
+                  if(/[0-9]/.test(line3_tmp[k+1])!=true) {
+                      console.log("Declarative Error " + line3_tmp[k+1]);
+                  }
+                }
+              }
+            }              
+          }
+         //DeclarativePart Finish          
   })
 }
 
