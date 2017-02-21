@@ -37,11 +37,11 @@ fs.readFile(process.argv[2],function(err,data) {
 
     var comment = [];
     var rel_op =[];
-    lines.forEach(function(line) {
-        console.log(line);
-    });
+    // lines.forEach(function(line) {
+    //     console.log(line);
+    // });
 
-      console.log("\n\n\nChecking..\n\n\n")
+    //  console.log("\n\n\nChecking..\n\n\n")
 
 
       // Checking Reserved_word
@@ -55,27 +55,27 @@ fs.readFile(process.argv[2],function(err,data) {
       var tmp = result.toString();
       var results = tmp.split(',');
 
-    console.log('reserve word is.. ');
-    for(var i = 1; i < results.length; i ++)
-      console.log(results[i]+'t');
+    //console.log('reserve word is.. ');
+    // for(var i = 1; i < results.length; i ++)
+    //   console.log(results[i]+'t');
 
-    console.log('comment is..');
+    //console.log('comment is..');
     lines.forEach(function(line) {
         if(line.match(comments) != null) {
             comment.push(line + ' <-- comment');
         }
     })
-      console.log(comment);
+     // console.log(comment);
 
     //Relational Operator
-    console.log('relational op is.. ');
+  //  console.log('relational op is.. ');
     lines.forEach(function(line) {
     if(line.match(rel_ops) != null) {
             rel_op.push(line.match(rel_ops));
         }
     })
-      for(var i = 0; i < rel_op.length; i ++)
-      console.log(rel_op[i] +  ' <-- relational op \n ');
+      // for(var i = 0; i < rel_op.length; i ++)
+      // console.log(rel_op[i] +  ' <-- relational op \n ');
 
       //Mul Operator
       var mul_op =[];
@@ -84,8 +84,8 @@ fs.readFile(process.argv[2],function(err,data) {
               mul_op.push(line.match(mul_ops));
           }
       })
-        for(var i = 0; i < mul_op.length; i ++)
-        console.log(mul_op[i] +  ' <-- Multiple op \n ');
+        // for(var i = 0; i < mul_op.length; i ++)
+        // console.log(mul_op[i] +  ' <-- Multiple op \n ');
 
       //Assign Operator
       //Mul Operator
@@ -95,8 +95,8 @@ fs.readFile(process.argv[2],function(err,data) {
               ass_op.push(line.match(':='));
           }
       })
-      for(var i = 0; i < ass_op.length; i ++)
-      console.log(ass_op[i] +  ' <-- assign op \n ');
+      // for(var i = 0; i < ass_op.length; i ++)
+      // console.log(ass_op[i] +  ' <-- assign op \n ');
 
 
       function isInt(n){
@@ -109,10 +109,10 @@ fs.readFile(process.argv[2],function(err,data) {
 
       //Assign Operator
       //Mul Operator
-      lines.forEach(function(line) {
-        console.log(isInt(line));
-        console.log(isFloat(line));
-      })
+      // lines.forEach(function(line) {
+      //   console.log(isInt(line));
+      //   console.log(isFloat(line));
+      // })
 
       var pattern1='"';
       var check_que;
@@ -122,7 +122,7 @@ fs.readFile(process.argv[2],function(err,data) {
                 check_que = check_que + 1;
           }
           if(check_que == 1)
-            console.log("Unchecked Que mark");
+           // console.log("Unchecked Que mark");
             check_que = 0;
         }
 
@@ -138,8 +138,8 @@ fs.readFile(process.argv[2],function(err,data) {
          }
        }
     }
-      if(check_paran == 2)
-        console.log("L and R paranthesis is working correctly");
+      // if(check_paran == 2)
+      //   console.log("L and R paranthesis is working correctly");
 
 
 
