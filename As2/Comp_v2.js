@@ -1,5 +1,5 @@
 /***************************************
-Name : Yunhyeo Lee
+Name : Yunhyeok Lee
 Instructor : George Hamer
 Due Date : Feb 20 2017
 Class : Complier CSC 446
@@ -7,11 +7,11 @@ Class : Complier CSC 446
 // To Test..  node Comp_v2.js Test.txt
 
 /*
-Get File name from console to check data
+Get file name from console to check data
 */
 var result = 0;
 
-  for (var i = 2; i < process.argv.length; i++){
+  for (var i = 2; i < process.argv.length; i++) {
     result += Number(process.argv[i]);
 }
 
@@ -31,7 +31,7 @@ var lines = text.split('\n');
 var procedure_tmp = text.split(' ');
 var procedure_count = 0;
 
-//이걸로 프로시저의 갯수가 몇개 있는지 체크함.. Begin End 만들려고
+//Check the procedure how many procedure is working now
   for(var i = 0; i < lines.length; i++) 
     if(lines[i].match(procedure_match) != null)
            procedure_count++;
@@ -53,7 +53,6 @@ var procedure_count = 0;
   }
 
   if(procedure_count == 2) {
-    //console.log(lines.length);
      if(lines[0].match(procedure_match) != null) {
         tmp_line2 = lines[0].split(' ');
         idt_check2 = tmp_line2[1];
@@ -84,11 +83,12 @@ var procedure_count = 0;
     if(idt_check2.match(end_check2) == null) 
       console.log("idt and end is not matched2");
   }
-  //여기다가 모든 그 걸리는 절차 확인하기.. for each로 계속 만들기
+ 
+ // match_procedure start 
    lines.forEach(function(line) {   
           match_procedure(line); 
     })
-//search로 자리 검사하기
+
     //declarativePart
       var check_begin;
     for(var i = 0; i<lines.length; i++) {
@@ -100,8 +100,7 @@ var procedure_count = 0;
     } //for loop 
           for( var j = 0; j < check_begin; j++) {
               var line3_tmp = lines[j].split(' ');
-               if(/PROCEDURE|END|BEGIN/gi.test(line3_tmp[0])!=true) 
-               {
+               if(/PROCEDURE|END|BEGIN/gi.test(line3_tmp[0])!=true) {
                  for(var k = 0; k < line3_tmp.length; k++) {
                   var n = line3_tmp[k].search(/:/g);
                     if( n >= 0) {
@@ -131,10 +130,10 @@ function match_procedure(line) {
       var is_check = 0;
       var paran_check = 0;
       var lines2 = line.split(' ');
-      var mode_check = 0; // ) 의 위치 체크
-      var mode_check2 = 0; // ; 위치 체크
-      var mode_check3 = 0; // : 갯수 체크
-      var mode_check4 = 0; // ; 갯수 체크
+      var mode_check = 0; // ) check
+      var mode_check2 = 0; // ; check
+      var mode_check3 = 0; // : check
+      var mode_check4 = 0; // ; check
             
       //Is check
      if(lines2[0].match(procedure_match) != null) {
@@ -162,7 +161,7 @@ function match_procedure(line) {
           paran_check++;
       if(line[i] == ";") {
           mode_check4++;
-          mode_check2 = i; //이것을 가지고.. :가 몇개 있는지 확인.. 그걸로 move check 하기
+          mode_check2 = i; // this need to make Args 
       }
        if(line[i] == ":")
           mode_check3++;
@@ -175,14 +174,11 @@ function match_procedure(line) {
 
       if(mode_check4 >= mode_check3 && paran_check > null) 
         console.log(line + ": or ; missing");
-      
-//    이걸 가지고 이제.. 그 Mode(in, out, inout) 체크를 해야함
-    //   for(var i = mode_check; i < mode_check2; i++) {
-    //     console.log(line[i]);
-    // }
 
   }
 }
+
+
 
 
 recursiveDescentParser ();
